@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  registry-worker:
+    image: registry:2
+    container_name: docker-worker
+    restart: always
+    # 默认暴露 5000 端口。由于我上面设置测试端口为5001，您可按需修改
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./config.yml:/etc/docker/registry/config.yml:ro
+      - ./data:/var/lib/registry

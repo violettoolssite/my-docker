@@ -1,0 +1,22 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+proxy:
+  # 这里定义上游源。为了保证最大兼容性，使用官方 Docker Hub 作为源
+  # 如果官方源很慢，您也可以将其替换为能够正常访问的国内加速源（如阿里云镜像库URL等）
+  remoteurl: https://registry-1.docker.io
